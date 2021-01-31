@@ -4,9 +4,11 @@
   "description": "Project Name Here goes your awesome project description!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests/**/*.js --exit --recursive --timeout 30000 --file ./tests/test-setup.js",
     "start": "nodemon -r dotenv/config index.js",
-    "prestart": "node scripts/create-database.js"
+    "prestart": "node scripts/create-database.js",
+    "pretest": "node scripts/create-database.js test",
+    "posttest": "node scripts/drop-database.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,17 @@
   "homepage": "https://github.com/HalFulcher/book-library-api#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "dotenv": "^8.2.0",
     "i": "^0.3.6",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.7",
-    "npm": "^6.14.11"
+    "npm": "^6.14.11",
+    "supertest": "^6.1.3"
   }
 }
